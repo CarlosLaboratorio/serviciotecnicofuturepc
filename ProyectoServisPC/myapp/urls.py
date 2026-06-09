@@ -1,9 +1,12 @@
-# from django.contrib import admin
-# from django.urls import path, include
+from django.urls import path
 
-# from myapp import views
+from . import views
 
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('', views.index, name='index')
-# ]
+app_name = "myapp"
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('clientes/', views.clientes, name='clientes'),
+    path('equipos/', views.equipos, name='equipos'),
+    path('tecnicos/', views.tecnicos, name='tecnicos'),
+    path('reparaciones/', views.reparaciones, name='reparaciones')
+]
