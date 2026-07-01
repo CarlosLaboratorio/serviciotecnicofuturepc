@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Gestión de Reparaciones{% endblock %}
 {% block content %}
-    <div class="container mt-4"></div>
-    <h1>Gestión de Reparaciones</h1>
+    <div class="container mt-4" data-aos="fade-down">
+    <h1 class="text-center mb-4 animate__animated animate__swing animate__repeat-2">Gestión de Reparaciones</h1>
     <p>Aquí puedes gestionar la información de tus reparaciones, incluyendo agregar nuevas reparaciones, editar detalles existentes y eliminar reparaciones que ya no sean necesarias.</p>
     <div class="row">
         {% for reparacion in reparaciones %}
-        <div class="col-md-4 col-sm-6 mb-4">
+        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-down">
             <div class="card shadow-sm h-100 bg-info-subtle text-info-emphasis">
                 <div class="card-body">
                     <h5 class="card-title text-primary">

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Gestión de Equipos{% endblock %}
 {% block content %}
-    <div class="container mt-4"></div>
-    <h1>Gestión de Equipos</h1>
+    <div class="container mt-4" data-aos="fade-down">
+    <h1 class="text-center mb-4 animate__animated animate__swing animate__repeat-2">Gestión de Equipos</h1>
     <p>Aquí puedes gestionar la información de tus equipos, incluyendo agregar nuevos equipos, editar detalles existentes y eliminar equipos que ya no sean necesarios.</p>
     <div class="row">
         {% for equipo in equipos %}
-        <div class="col-md-4 col-sm-6 mb-4">
+        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-down">
             <div class="card shadow-sm h-100 bg-info-subtle text-info-emphasis">
                 <div class="card-body">
                     <h5 class="card-title text-primary">
