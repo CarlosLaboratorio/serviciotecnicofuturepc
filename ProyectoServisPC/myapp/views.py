@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Cliente, Tecnico, Equipo, Reparacion
-from .forms import ClientesFormulario
+from .forms import ClientesFormulario, ClientesFilter
+from django.db import models
 
 # Create your views here.
 def index(request):
@@ -8,8 +9,21 @@ def index(request):
     return render(request,"myapp/index.html",context)
 
 def clientes(request):
-    clientes = Cliente.objects.all()
-    return render(request, 'myapp/clientes.html', {'clientes': clientes})
+    query = request.GET.get('q')  # Captura lo que se escribe en el buscador
+    if query:
+        clientes = Cliente.objects.filter(
+            models.Q(nombre__icontains=query) |
+            models.Q(apellido__icontains=query) |
+            models.Q(email__icontains=query)
+        )
+    else:
+        clientes = Cliente.objects.all()
+
+
+    return render(request, 'myapp/clientes.html', {
+        'clientes': clientes,
+        'query': query,
+    })
 
 def equipos(request):
     equipos = Equipo.objects.all()
@@ -38,3 +52,26 @@ def agregar_cliente(request):
     else:
         form = ClientesFormulario()
     return render(request, 'myapp/agregar_cliente.html', {'form': form})
+
+def editar_cliente(request, id):
+    cliente = get_object_or_404(Cliente, id=id)
+    
+    if request.method == 'POST':
+        form = ClientesFilter(request.POST, instance=cliente)
+        if form.is_valid():
+            form.save()
+            return redirect('myapp:clientes')
+    else:
+        form = ClientesFilter(instance=cliente)
+    
+    return render(request, 'myapp/editar_cliente.html', {'form': form, 'cliente': cliente})
+
+
+def eliminar_cliente(request, id):
+    cliente = get_object_or_404(Cliente, id=id)
+
+    if request.method == 'POST':
+        cliente.delete()
+        return redirect('myapp:clientes')
+
+    return render(request, 'myapp/clientes.html', {'cliente': cliente})
