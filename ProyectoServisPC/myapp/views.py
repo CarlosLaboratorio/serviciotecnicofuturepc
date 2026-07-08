@@ -34,7 +34,7 @@ def agregar_cliente(request):
             direccion = form.cleaned_data['direccion']
             cliente = Cliente(nombre=nombre, apellido=apellido, telefono=telefono, email=email, direccion=direccion)
             cliente.save()
-            return redirect('clientes')
+            return redirect('myapp:clientes')
     else:
         form = ClientesFormulario()
     return render(request, 'myapp/agregar_cliente.html', {'form': form})

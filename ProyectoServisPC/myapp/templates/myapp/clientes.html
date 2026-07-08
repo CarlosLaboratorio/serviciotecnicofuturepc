@@ -4,6 +4,7 @@
     <div class="container mt-4" data-aos="fade-down">
     <h1 class="text-center mb-4 animate__animated animate__swing animate__repeat-2">Gestión de Clientes</h1>
     <p>Aquí puedes gestionar la información de tus clientes, incluyendo agregar nuevos clientes, editar detalles existentes y eliminar clientes que ya no sean necesarios.</p>
+    <div class="text-end mb-4"> <a class="btn btn-success bi bi-person-fill-add" href="{% url 'myapp:agregar_cliente' %}"><span class="ms-2">Agregar</span></a></div>
     <div class="row">
         {% for cliente in clientes %}
         <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-down">
@@ -27,6 +28,7 @@
         {% empty %}
         <p class="text-muted text-center">No hay clientes registrados.</p>
         {% endfor %}
+
     </div>
     </div>
 {% endblock %}

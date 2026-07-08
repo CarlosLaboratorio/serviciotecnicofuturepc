@@ -11,3 +11,5 @@ urlpatterns = [
     path('reparaciones/', views.reparaciones, name='reparaciones'),
     path('agregar_cliente/', views.agregar_cliente, name='agregar_cliente')
 ]
+
+
