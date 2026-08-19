@@ -19,6 +19,14 @@
                         <strong>Especialidad:</strong> {{ tecnico.especialidad }}
                     </p>
                 </div>
+                <div class="card-footer text-center">
+                <a href="#NADAAUN" class="btn btn-warning btn-sm bi bi-pencil-square me-2"></a>
+                <form action="#NADAAUN" method="POST" style="display:inline;" 
+                    onsubmit="return confirm('¿Seguro que deseas eliminar a {{ tecnico.nombre }} {{ tecnico.apellido }}?')">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm bi bi-trash3-fill"></button>
+                </form>
+                </div>
             </div>
         </div>
         {% empty %}

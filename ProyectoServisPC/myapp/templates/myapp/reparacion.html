@@ -4,32 +4,141 @@
     <div class="container mt-4" data-aos="fade-down">
     <h1 class="text-center mb-4 animate__animated animate__swing animate__repeat-2">Gestión de Reparaciones</h1>
     <p>Aquí puedes gestionar la información de tus reparaciones, incluyendo agregar nuevas reparaciones, editar detalles existentes y eliminar reparaciones que ya no sean necesarias.</p>
-    <div class="row">
-        {% for reparacion in reparaciones %}
-        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-down">
-            <div class="card shadow-sm h-100 bg-info-subtle text-info-emphasis">
-                <div class="card-body">
-                    <h5 class="card-title text-primary">
-                        {{ reparacion.equipo }} - {{ reparacion.tecnico }}
-                    </h5>
-                    <p class="card-text mb-1">
-                        <strong>Problema reportado:</strong> {{ reparacion.problema_reportado }}
-                    </p>
-                    <p class="card-text  mb-1">
-                        <strong>Solución:</strong> {{ reparacion.solucion }}
-                    </p>
-                    <p class="card-text  mb-1">
-                        <strong>Costo:</strong> {{ reparacion.costo }}
-                    </p>
-                    <p class="card-text">
-                        <strong>Estado: </strong> {{ reparacion.estado }}
-                    </p>
-                </div>
-            </div>
+        <div class="card shadow-sm border-0">
+
+        <div class="card-header bg-info-subtle">
+            <h5 class="mb-0 text-primary">
+                <i class="bi bi-tools"></i>
+                Reparaciones registradas
+            </h5>
         </div>
-        {% empty %}
-        <p class="text-muted text-center">No hay reparaciones registradas.</p>
-        {% endfor %}
+
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover table-striped align-middle mb-0">
+
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Técnico</th>
+                            <th>Diagnóstico</th>
+                            <th>Entrega</th>
+                            <th>Estado</th>
+                            <th>Soluciones</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for reparacion in reparaciones %}
+
+                        <tr>
+
+                            <!-- Tecnico -->
+                            <td>
+                                {{ reparacion.tecnico }}
+                            </td>
+
+                            <!-- Diagnostico -->
+                            <td>
+                                {{ reparacion.diagnostico|default:"Sin diagnostico" }}
+                            </td>
+
+                            <!-- Fecha entrega-->
+                            <td>
+                                {{ reparacion.fecha_entrega|date:"d/m/Y" }}
+                            </td>
+
+                            <!-- Estado -->
+                            <td>
+
+                                {% if reparacion.estado == "ESPERA" %}
+
+                                    <span class="badge text-bg-warning">
+                                        <i class="bi bi-clock"></i>
+                                        En espera
+                                    </span>
+
+                                {% elif reparacion.estado == "REPARANDO" %}
+
+                                    <span class="badge text-bg-primary">
+                                        <i class="bi bi-tools"></i>
+                                        En reparación
+                                    </span>
+
+                                {% elif reparacion.estado == "FINALIZADO" %}
+
+                                    <span class="badge text-bg-success">
+                                        <i class="bi bi-check-circle"></i>
+                                        Finalizado
+                                    </span>
+
+                                {% elif reparacion.estado == "ENTREGADO" %}
+
+                                    <span class="badge text-bg-info">
+                                        <i class="bi bi-check-circle"></i>
+                                        Entregado
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge text-bg-secondary">
+                                        {{ reparacion.estado }}
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <!-- Solución -->
+                            <td class="text-muted">
+                                {{ reparacion.solucion|default:"Sin solución" }}
+                            </td>
+
+                            <!-- Acciones -->
+                            <td class="text-center">
+
+                                <a href="#NADAAUN"
+                                class="btn btn-sm btn-outline-warning"
+                                title="Editar reparación">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+
+                                <a href="#NADAAUN"
+                                class="btn btn-sm btn-outline-danger"
+                                title="Eliminar reparación">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+                            <td colspan="7" class="text-center text-muted py-4">
+
+                                <i class="bi bi-info-circle"></i>
+
+                                No hay reparaciones registradas.
+
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        </div>
     </div>
     </div>
 {% endblock %}

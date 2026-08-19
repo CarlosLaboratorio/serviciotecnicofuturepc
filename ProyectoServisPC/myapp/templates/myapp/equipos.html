@@ -4,32 +4,105 @@
     <div class="container mt-4" data-aos="fade-down">
     <h1 class="text-center mb-4 animate__animated animate__swing animate__repeat-2">Gestión de Equipos</h1>
     <p>Aquí puedes gestionar la información de tus equipos, incluyendo agregar nuevos equipos, editar detalles existentes y eliminar equipos que ya no sean necesarios.</p>
-    <div class="row">
-        {% for equipo in equipos %}
-        <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-down">
-            <div class="card shadow-sm h-100 bg-info-subtle text-info-emphasis">
-                <div class="card-body">
-                    <h5 class="card-title text-primary">
-                        {{ equipo.cliente }} - {{ equipo.tipo }}
-                    </h5>
-                    <p class="card-text mb-1">
-                        <strong>Marca:</strong> {{ equipo.marca }}
-                    </p>
-                    <p class="card-text  mb-1">
-                        <strong>Modelo:</strong> {{ equipo.modelo }}
-                    </p>
-                    <p class="card-text  mb-1">
-                        <strong>Serial:</strong> {{ equipo.numero_serie }}
-                    </p>
-                    <p class="card-text">
-                        <strong>Observaciones: </strong> {{ equipo.observaciones }}
-                    </p>
-                </div>
-            </div>
+    <div class="card shadow-sm border-0">
+
+    <div class="card-header bg-info-subtle">
+        <h5 class="mb-0 text-primary">
+            <i class="bi bi-pc-display"></i>
+            Equipos registrados
+        </h5>
+    </div>
+
+    <div class="card-body p-0">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover table-striped align-middle mb-0">
+
+                <thead class="table-primary">
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Tipo</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Serial</th>
+                        <th>Observaciones</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for equipo in equipos %}
+
+                    <tr>
+
+                        <td class="fw-semibold">
+                            {{ equipo.cliente }}
+                        </td>
+
+                        <td>
+                            <span class="badge text-bg-info">
+                                {{ equipo.tipo }}
+                            </span>
+                        </td>
+
+                        <td>
+                            {{ equipo.marca }}
+                        </td>
+
+                        <td>
+                            {{ equipo.modelo }}
+                        </td>
+
+                        <td>
+                            <code>{{ equipo.numero_serie }}</code>
+                        </td>
+
+                        <td class="text-muted">
+                            {{ equipo.observaciones|default:"Sin observaciones" }}
+                        </td>
+                        <td class="text-center">
+
+                            <a href="#NADAAUN"
+                            class="btn btn-sm btn-outline-primary"
+                            title="Ver equipo">
+                                <i class="bi bi-eye"></i>
+                            </a>
+
+                            <a href="#NADAAUN"
+                            class="btn btn-sm btn-outline-warning"
+                            title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+
+                            <a href="#NADAAUN"
+                            class="btn btn-sm btn-outline-danger"
+                            title="Eliminar">
+                                <i class="bi bi-trash"></i>
+                            </a>
+
+                        </td>
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">
+                            <i class="bi bi-info-circle"></i>
+                            No hay equipos registrados.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
         </div>
-        {% empty %}
-        <p class="text-muted text-center">No hay equipos registrados.</p>
-        {% endfor %}
+
+    </div>
     </div>
     </div>
 {% endblock %}
