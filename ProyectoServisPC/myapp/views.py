@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Cliente, Tecnico, Equipo, Reparacion
 from .forms import ClientesFormulario, ClientesFilter
+from django.contrib.auth.decorators import login_required
 from django.db import models
 
 # Create your views here.
@@ -37,6 +38,7 @@ def reparaciones(request):
     reparaciones = Reparacion.objects.all()
     return render(request, 'myapp/reparacion.html', {'reparaciones': reparaciones})
 
+@login_required
 def agregar_cliente(request):
     if request.method == 'POST':
         form = ClientesFormulario(request.POST)
@@ -53,6 +55,7 @@ def agregar_cliente(request):
         form = ClientesFormulario()
     return render(request, 'myapp/agregar_cliente.html', {'form': form})
 
+@login_required
 def editar_cliente(request, id):
     cliente = get_object_or_404(Cliente, id=id)
     
@@ -66,7 +69,7 @@ def editar_cliente(request, id):
     
     return render(request, 'myapp/editar_cliente.html', {'form': form, 'cliente': cliente})
 
-
+@login_required
 def eliminar_cliente(request, id):
     cliente = get_object_or_404(Cliente, id=id)
 
