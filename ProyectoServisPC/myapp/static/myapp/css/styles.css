@@ -20,3 +20,19 @@ footer {
     padding: 10px;
     width: 100%;
 }
+
+/* Exclusivo para la página de crear opinión y detalle_tecnico */
+.estrellas {
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+.estrella {
+    margin: 0 4px;
+    transition: transform 0.15s;
+}
+.estrella:hover {
+    transform: scale(1.15);
+}
+.estrella.seleccionada {
+    color: #ffc107;
+}

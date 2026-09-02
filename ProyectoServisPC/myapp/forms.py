@@ -1,5 +1,5 @@
 from django import forms
-from .models import Cliente
+from .models import Cliente, Opinion
 
 class ClientesFormulario(forms.Form):
     nombre = forms.CharField(max_length=100, label="Nombre")
@@ -14,3 +14,17 @@ class ClientesFilter(forms.ModelForm):
         model = Cliente
         fields = ['nombre', 'apellido', 'telefono', 'email']
         
+        
+
+class OpinionForm(forms.ModelForm):
+    class Meta:
+        model = Opinion
+        fields = ['estrellas', 'comentario']
+        widgets = {
+            'comentario': forms.Textarea(
+                attrs={
+                    'rows': 4,
+                    'placeholder': 'Escriba su opinión sobre la atención recibida...'
+                }
+            )
+        }

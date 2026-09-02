@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cliente, Equipo,Tecnico, Reparacion
+from .models import Cliente, Equipo,Tecnico, Reparacion, Opinion
 
 # Register your models here.
 admin.site.site_header = "Admin de ServisPC"
@@ -9,3 +9,4 @@ admin.site.register(Cliente)
 admin.site.register(Equipo)
 admin.site.register(Tecnico)
 admin.site.register(Reparacion)
+admin.site.register(Opinion)

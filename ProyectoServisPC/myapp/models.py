@@ -93,3 +93,26 @@ class Reparacion(models.Model):
 
     def __str__(self):
         return f"Reparación #{self.id} - {self.equipo}"
+
+
+
+    
+class Opinion(models.Model):
+    reparacion = models.OneToOneField(
+        Reparacion,
+        on_delete=models.CASCADE,
+        related_name='opinion'
+    )
+    estrellas = models.PositiveSmallIntegerField(
+        choices=[
+            (1, '★'),
+            (2, '★★'),
+            (3, '★★★'),
+            (4, '★★★★'),
+            (5, '★★★★★'),
+        ]
+    )
+    comentario = models.TextField(blank=True)
+    fecha = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"Opinión de reparación #{self.reparacion.id} - {self.estrellas} estrellas"
