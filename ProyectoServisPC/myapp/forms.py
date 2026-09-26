@@ -1,5 +1,5 @@
 from django import forms
-from .models import Cliente, Opinion
+from .models import Cliente, Opinion, Equipo
 
 class ClientesFormulario(forms.Form):
     nombre = forms.CharField(max_length=100, label="Nombre")
@@ -28,3 +28,8 @@ class OpinionForm(forms.ModelForm):
                 }
             )
         }
+        
+class EquiposFilter(forms.ModelForm):
+    class Meta:
+        model = Equipo
+        fields = ['marca', 'modelo', 'tipo', 'cliente', 'observaciones', 'numero_serie']

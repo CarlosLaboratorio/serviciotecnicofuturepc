@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Cliente, Tecnico, Equipo, Reparacion, Opinion
-from .forms import ClientesFormulario, ClientesFilter, OpinionForm
+from .forms import ClientesFormulario, ClientesFilter, OpinionForm, EquiposFilter
 from django.contrib.auth.decorators import login_required
 from django.db import models
 from django.db.models import Avg, Count
@@ -141,12 +141,10 @@ def crear_opinion(request, reparacion_id):
     
 
 def detalle_reparacion(request, reparacion_id):
-
     reparacion = get_object_or_404(
         Reparacion,
         id=reparacion_id
     )
-
     return render(
         request,
         'myapp/detalle_reparacion.html',
@@ -154,3 +152,23 @@ def detalle_reparacion(request, reparacion_id):
             'reparacion': reparacion,
         }
     )
+    
+
+@login_required
+def editar_equipo(request, id):
+    equipo = get_object_or_404(Equipo, id=id)
+    
+    if request.method == 'POST':
+        form = EquiposFilter(request.POST, instance=equipo)
+        if form.is_valid():
+            form.save()
+            return redirect('myapp:equipos')
+    else:
+        form = EquiposFilter(instance=equipo)
+    
+    return render(request, 'myapp/editar_equipo.html', {'form': form, 'equipo': equipo})
+
+
+def contactos(request):
+    tecnicos = Tecnico.objects.all()
+    return render(request,"myapp/contactos.html", {'tecnicos': tecnicos})

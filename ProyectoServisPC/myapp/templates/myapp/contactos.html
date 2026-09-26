@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contactos - Reparación de PC{% endblock %}
+{% block content %}
+
+    <!-- Bienvenida -->
+
+    <div class="text-center mb-5" data-aos="fade-down">
+    <h1 class="fw-bold text-primary animate__animated animate__swing animate__repeat-3">Contacta con tu técnico</h1>
+    <p class="text-muted fs-5 mt-3">
+        En esta sección puedes comunicarte directamente con el técnico que le hace soporte a tu equipo para saber el estado de la reparación. Recorda que las datos principales del mismo lo puedes encontrar en <a href="{% url 'myapp:reparaciones' %}">Reparaciones</a>
+    </p>
+    </div>
+
+    <!-- Secciones principales -->
+
+    <form action="https://formsubmit.co/carlosanibal815@gmail.com" method="POST" referrerpolicy="no-referrer-when-downgrade">
+    <fieldset>
+        <legend>Enviar mensaje</legend>
+        <div class="mb-3">
+        <label for="cliente" class="form-label">Nombre: </label>
+        <input type="text" name= "nombre" id="cliente" class="form-control" placeholder="Escribe tu nombre">
+        </div>
+        <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido: </label>
+        <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Escribe tu apellido"></div>
+        <div class="mb-3">
+        <label for="tecnico" class="form-label">Técnico: </label>
+        <select id="tecnico" name="tecnico"class="form-select">
+                <option value="" disabled selected>Selecciona un técnico</option>
+            {% for tecnico in tecnicos %}
+                <option value="{{tecnico.id}}">{{ tecnico.apellido }} {{ tecnico.nombre }}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <div class="mb-3">
+            <label for="mensaje" class="form-label">Mensaje:</label><br>
+            <textarea class="form-control" name="mensaje" id="mensaje" cols="50" rows="5" placeholder="Escribe aquí tu mensaje..."></textarea>
+        </div>
+        <button type="reset" class="btn btn-primary">Limpiar</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </fieldset>
+    </form>
+
+{% endblock %}

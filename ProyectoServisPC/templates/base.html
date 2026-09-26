@@ -33,6 +33,7 @@
                 <li class="nav-item"><a class="nav-link text-white btn btn-primary bi bi-person-badge-fill me-2" href="{% url 'myapp:tecnicos' %}"><span class="ms-2">Tecnicos</span></a></li>
                 <li class="nav-item"><a class="nav-link text-white btn btn-primary bi bi-pc-display" href="{% url 'myapp:equipos' %}"><span class="ms-2">Equipos</span></a></li>
                 <li class="nav-item"><a class="nav-link text-white btn btn-primary bi bi-tools" href="{% url 'myapp:reparaciones' %}"><span class="ms-2">Reparaciones</span></a></li>
+                <li class="nav-item"><a class="nav-link text-white btn btn-primary bi bi-envelope-at-fill" href="{% url 'myapp:contactos' %}"><span class="ms-2">Contactos</span></a></li>
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a href="{% url 'accounts:perfil' %}" class="nav-link"><span class="ms-2">Perfil</span></a></li>
                     <form action="{% url 'accounts:logout' %}" method="post" class="d-inline">

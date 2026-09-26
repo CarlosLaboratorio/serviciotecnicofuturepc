@@ -60,3 +60,31 @@
             });
 
         });
+
+
+        // document.querySelector('form').addEventListener('submit', function(e) {
+        //     // Si estás usando la corrección de los atributos 'name' que te di antes:
+        //     e.preventDefault(); // Evita que la página se recargue por defecto
+
+        //     const formData = new FormData(this);
+
+        //     fetch(this.action, {
+        //         method: 'POST',
+        //         body: formData,
+        //         headers: {
+        //             'Accept': 'application/json'
+        //         }
+        //     })
+        //     .then(response => {
+        //         if (response.ok) {
+        //             alert('¡Mensaje enviado con éxito!');
+        //             this.reset(); // Limpia el formulario
+        //         } else {
+        //             alert('Hubo un error al enviar el formulario.');
+        //         }
+        //     })
+        //     .catch(error => {
+        //         console.error('Error:', error);
+        //         alert('No se pudo conectar con el servidor de correos.');
+        //     });
+        // });
